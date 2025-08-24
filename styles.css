@@ -546,11 +546,23 @@ a:hover {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: all var(--transition-speed);
+    opacity: 1;
+    transform: scale(1);
 }
 
 .work-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.work-item.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    border: none;
 }
 
 .work-image {
@@ -663,6 +675,18 @@ a:hover {
 
 .case-study-content.active {
     display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .case-study-step {
@@ -786,6 +810,11 @@ blockquote footer {
     background-color: var(--royal-blue);
     border-radius: 4px;
     transition: width 1s ease;
+    width: 0;
+}
+
+.skill-category.animate .skill-level {
+    width: var(--skill-width, 0);
 }
 
 /* Testimonials Section */
@@ -808,6 +837,11 @@ blockquote footer {
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: transform var(--transition-speed);
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
 }
 
 .testimonial-content {
@@ -937,6 +971,15 @@ blockquote footer {
     text-align: center;
 }
 
+/* Success message styling */
+.success-message {
+    color: var(--royal-blue);
+    margin-top: 1rem;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 /* Footer */
 .footer {
     background-color: var(--black);
@@ -1002,35 +1045,37 @@ blockquote footer {
     align-items: center;
     font-size: 24px;
     cursor: pointer;
+    transition: background-color var(--transition-speed);
 }
 
-.chess-square:nth-child(odd) {
-    background-color: var(--white);
+.chess-square:hover {
+    background-color: rgba(65, 105, 225, 0.3) !important;
 }
 
-.chess-square:nth-child(even) {
-    background-color: var(--medium-gray);
-}
-
+/* Chess square coloring */
 .chess-square:nth-child(8n+1),
-.chess-square:nth-child(8n+2),
 .chess-square:nth-child(8n+3),
-.chess-square:nth-child(8n+4),
 .chess-square:nth-child(8n+5),
-.chess-square:nth-child(8n+6),
 .chess-square:nth-child(8n+7),
-.chess-square:nth-child(8n+8) {
+.chess-square:nth-child(8n+2):nth-child(-n+8),
+.chess-square:nth-child(8n+4):nth-child(-n+16),
+.chess-square:nth-child(8n+6):nth-child(-n+24),
+.chess-square:nth-child(8n+8):nth-child(-n+32),
+.chess-square:nth-child(8n+1):nth-child(n+33),
+.chess-square:nth-child(8n+3):nth-child(n+33),
+.chess-square:nth-child(8n+5):nth-child(n+33),
+.chess-square:nth-child(8n+7):nth-child(n+33) {
     background-color: var(--white);
 }
 
-.chess-square:nth-child(8n+1):nth-child(even),
-.chess-square:nth-child(8n+2):nth-child(odd),
-.chess-square:nth-child(8n+3):nth-child(even),
-.chess-square:nth-child(8n+4):nth-child(odd),
-.chess-square:nth-child(8n+5):nth-child(even),
-.chess-square:nth-child(8n+6):nth-child(odd),
-.chess-square:nth-child(8n+7):nth-child(even),
-.chess-square:nth-child(8n+8):nth-child(odd) {
+.chess-square:nth-child(8n+2):nth-child(n+9),
+.chess-square:nth-child(8n+4):nth-child(n+17),
+.chess-square:nth-child(8n+6):nth-child(n+25),
+.chess-square:nth-child(8n+8):nth-child(n+33),
+.chess-square:nth-child(8n+1):nth-child(n+41),
+.chess-square:nth-child(8n+3):nth-child(n+41),
+.chess-square:nth-child(8n+5):nth-child(n+41),
+.chess-square:nth-child(8n+7):nth-child(n+41) {
     background-color: var(--medium-gray);
 }
 
@@ -1148,5 +1193,14 @@ blockquote footer {
     
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .mini-chessboard {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .chess-square {
+        font-size: 20px;
     }
 }
