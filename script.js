@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 if (entry.target.classList.contains('skills')) {
+                    entry.target.classList.add('animate');
                     animateSkillBars();
                 }
                 entry.target.classList.add('animate');

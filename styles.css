@@ -5,6 +5,9 @@
     --white: #FFFFFF;
     --light-gray: #D1D5DB;
     --medium-gray: #9CA3AF;
+    --dark-gray: #1F2937;
+    --bg-light: #F9FAFB;
+    --bg-dark: #111827;
     
     --font-cinzel: 'Cinzel', serif;
     --font-inter: 'Inter', sans-serif;
@@ -12,6 +15,7 @@
     
     --transition-speed: 0.3s;
     --border-radius: 8px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     
     /* Reduced motion preference */
     --reduce-motion: reduce;
@@ -76,17 +80,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 600;
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
     font-weight: 600;
 }
 
@@ -119,6 +123,7 @@ a:hover {
     cursor: pointer;
     transition: all var(--transition-speed);
     border: none;
+    font-family: var(--font-montserrat);
 }
 
 .btn-primary {
@@ -127,9 +132,10 @@ a:hover {
 }
 
 .btn-primary:hover {
-    background-color: var(--black);
+    background-color: var(--dark-gray);
     color: var(--white);
-    box-shadow: 0 0 15px rgba(65, 105, 225, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(65, 105, 225, 0.2);
 }
 
 .btn-secondary {
@@ -141,6 +147,7 @@ a:hover {
 .btn-secondary:hover {
     background-color: var(--royal-blue);
     color: var(--white);
+    transform: translateY(-2px);
 }
 
 .btn-text {
@@ -152,6 +159,7 @@ a:hover {
     padding: 0;
     position: relative;
     display: inline-block;
+    font-family: var(--font-montserrat);
 }
 
 .btn-text::after {
@@ -323,16 +331,22 @@ a:hover {
     z-index: 2;
 }
 
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 0.5rem;
-    color: var(--black);
+.hero-intro {
+    max-width: 600px;
 }
 
-.hero h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+.tagline {
+    font-family: var(--font-montserrat);
+    font-weight: 600;
     color: var(--royal-blue);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: var(--medium-gray);
 }
 
 .hero-visual {
@@ -381,7 +395,7 @@ a:hover {
 /* About Section */
 .about {
     padding: 5rem 0;
-    background-color: rgba(65, 105, 225, 0.05);
+    background-color: var(--bg-light);
 }
 
 .about-content {
@@ -402,7 +416,7 @@ a:hover {
     position: relative;
     overflow: hidden;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
 }
 
 .image-frame img {
@@ -446,66 +460,24 @@ a:hover {
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    padding: 1.5rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed);
+}
+
+.highlight:hover {
+    transform: translateY(-5px);
 }
 
 .highlight-icon {
     flex-shrink: 0;
 }
 
-/* Journey Section */
-.journey {
-    padding: 5rem 0;
-}
-
-.journey-timeline {
-    position: relative;
-    padding-left: 30px;
-}
-
-.journey-timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(to bottom, var(--royal-blue), var(--medium-gray));
-}
-
-.journey-item {
-    position: relative;
-    padding-bottom: 3rem;
-}
-
-.journey-item:last-child {
-    padding-bottom: 0;
-}
-
-.journey-icon {
-    position: absolute;
-    left: -36px;
-    top: 0;
-    width: 40px;
-    height: 40px;
-    background-color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 0 4px rgba(65, 105, 225, 0.2);
-}
-
-.journey-text {
-    background-color: rgba(65, 105, 225, 0.05);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--royal-blue);
-}
-
 /* Work Section */
 .work {
     padding: 5rem 0;
-    background-color: rgba(65, 105, 225, 0.05);
 }
 
 .work-filters {
@@ -544,7 +516,7 @@ a:hover {
     background-color: var(--white);
     border-radius: var(--border-radius);
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--box-shadow);
     transition: all var(--transition-speed);
     opacity: 1;
     transform: scale(1);
@@ -552,7 +524,7 @@ a:hover {
 
 .work-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .work-item.hidden {
@@ -706,56 +678,10 @@ a:hover {
     border-radius: 50%;
 }
 
-/* Leadership Section */
-.leadership {
-    padding: 5rem 0;
-}
-
-.leadership-content {
-    display: flex;
-    gap: 3rem;
-    align-items: center;
-}
-
-.leadership-text {
-    flex: 3;
-}
-
-.leadership-quote {
-    flex: 2;
-    background-color: rgba(65, 105, 225, 0.05);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--royal-blue);
-}
-
-.leadership-roles {
-    margin-top: 2rem;
-}
-
-.role {
-    margin-bottom: 1.5rem;
-}
-
-.role h4 {
-    color: var(--royal-blue);
-    margin-bottom: 0.5rem;
-}
-
-blockquote {
-    font-style: italic;
-}
-
-blockquote footer {
-    margin-top: 1rem;
-    font-style: normal;
-    font-weight: 600;
-}
-
 /* Skills Section */
 .skills {
     padding: 5rem 0;
-    background-color: rgba(65, 105, 225, 0.05);
+    background-color: var(--bg-light);
 }
 
 .skills-grid {
@@ -768,7 +694,12 @@ blockquote footer {
     background-color: var(--white);
     padding: 1.5rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed);
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
 }
 
 .skill-category h3 {
@@ -826,14 +757,13 @@ blockquote footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-bottom: 3rem;
 }
 
 .testimonial {
     background-color: var(--white);
     padding: 2rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -847,6 +777,7 @@ blockquote footer {
 .testimonial-content {
     flex: 1;
     margin-bottom: 1.5rem;
+    font-style: italic;
 }
 
 .testimonial-author {
@@ -868,33 +799,10 @@ blockquote footer {
     object-fit: cover;
 }
 
-.client-retention {
-    background-color: rgba(65, 105, 225, 0.05);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    text-align: center;
-}
-
-.retention-stats {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.stat {
-    text-align: center;
-}
-
-.stat h3 {
-    color: var(--royal-blue);
-    margin-bottom: 0.5rem;
-}
-
 /* Contact Section */
 .contact {
     padding: 5rem 0;
-    background-color: rgba(65, 105, 225, 0.05);
+    background-color: var(--bg-light);
 }
 
 .contact-content {
@@ -935,7 +843,7 @@ blockquote footer {
     background-color: var(--white);
     padding: 2rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--box-shadow);
 }
 
 .form-group {
@@ -982,7 +890,7 @@ blockquote footer {
 
 /* Footer */
 .footer {
-    background-color: var(--black);
+    background-color: var(--dark-gray);
     color: var(--white);
     padding: 3rem 0 1.5rem;
 }
@@ -1081,23 +989,13 @@ blockquote footer {
 
 /* Responsive Styles */
 @media (max-width: 992px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
-    
-    .hero h2 {
-        font-size: 1.75rem;
-    }
-    
     .about-content,
-    .leadership-content,
     .contact-content {
         flex-direction: column;
         gap: 2rem;
     }
     
-    .about-image,
-    .leadership-quote {
+    .about-image {
         width: 100%;
     }
 }
@@ -1137,25 +1035,12 @@ blockquote footer {
         transform: rotate(-45deg) translate(7px, -6px);
     }
     
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero h2 {
-        font-size: 1.5rem;
-    }
-    
     .hero-visual {
         display: none;
     }
     
     .about-highlights {
         flex-direction: column;
-    }
-    
-    .retention-stats {
-        flex-direction: column;
-        gap: 1rem;
     }
     
     .footer-content {
@@ -1166,14 +1051,6 @@ blockquote footer {
 }
 
 @media (max-width: 576px) {
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.75rem;
-    }
-    
     .hero-cta {
         flex-direction: column;
         width: 100%;
