@@ -3,11 +3,13 @@
     --base: #0B0B0C;
     --white: #FFFFFF;
     --gold: #D4AF37;
+    --light-gold: #F0D78C;
     --gray: #7A7A7A;
     --muted: #2A2A2B;
     --glass: rgba(255, 255, 255, 0.03);
+    --glass-hover: rgba(255, 255, 255, 0.08);
     --max-width: 1200px;
-    --transition: 240ms cubic-bezier(.2, .9, .3, 1);
+    --transition: 240ms cubic-bezier(.2,.9,.3,1);
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --ui-font: 'IBM Plex Sans', sans-serif;
@@ -18,6 +20,8 @@
     --text-primary: var(--white);
     --text-secondary: var(--gray);
     --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-gold: 0 0 15px rgba(212, 175, 55, 0.3);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Light theme */
@@ -27,6 +31,8 @@ body.light-theme {
     --text-primary: #0B0B0C;
     --text-secondary: #7A7A7A;
     --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-gold: 0 0 15px rgba(212, 175, 55, 0.2);
+    --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Global Styles */
@@ -47,6 +53,27 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color var(--transition), color var(--transition);
+    position: relative;
+}
+
+/* Chessboard background pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, var(--gold) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--gold) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--gold) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--gold) 75%);
+    background-size: 60px 60px;
+    background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+    opacity: 0.02;
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* Skip to content link for accessibility */
@@ -60,6 +87,7 @@ body {
     text-decoration: none;
     border-radius: 0 0 4px 0;
     z-index: 100;
+    transition: top 0.3s ease;
 }
 
 .skip-link:focus {
@@ -73,6 +101,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    position: relative;
 }
 
 h1 {
@@ -81,6 +110,18 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--gold);
 }
 
 h3 {
@@ -107,11 +148,28 @@ p {
 a {
     color: var(--gold);
     text-decoration: none;
-    transition: color var(--transition);
+    transition: color var(--transition), text-shadow var(--transition);
+    position: relative;
 }
 
 a:hover {
-    color: var(--white);
+    color: var(--light-gold);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--gold);
+    transition: width var(--transition);
+}
+
+a:hover::after {
+    width: 100%;
 }
 
 /* Buttons */
@@ -129,18 +187,41 @@ a:hover {
     transition: all var(--transition);
     cursor: pointer;
     font-family: var(--ui-font);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
 }
 
 .btn-primary {
     background-color: var(--gold);
     color: var(--base);
     border-color: var(--gold);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .btn-primary:hover {
     background-color: #c4a02f;
     border-color: #c4a02f;
     color: var(--base);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
 }
 
 .btn-outline-secondary {
@@ -150,9 +231,10 @@ a:hover {
 }
 
 .btn-outline-secondary:hover {
-    background-color: var(--glass);
+    background-color: var(--glass-hover);
     border-color: var(--gold);
     color: var(--gold);
+    transform: translateY(-2px);
 }
 
 /* Header */
@@ -161,13 +243,18 @@ a:hover {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(11, 11, 12, 0.95);
+    background-color: rgba(11, 11, 12, 0.85);
     backdrop-filter: blur(10px);
-    transition: background-color var(--transition);
+    transition: background-color var(--transition), box-shadow var(--transition);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header.scrolled {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 .light-theme .header {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 .navbar {
@@ -181,6 +268,11 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: transform var(--transition);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
 }
 
 .light-theme .navbar-brand {
@@ -189,6 +281,12 @@ a:hover {
 
 .brand-icon {
     font-size: 1.75rem;
+    transition: transform var(--transition);
+    display: inline-block;
+}
+
+.brand-icon:hover {
+    transform: rotate(15deg);
 }
 
 .nav-link {
@@ -213,6 +311,16 @@ a:hover {
     right: 1rem;
     height: 2px;
     background-color: var(--gold);
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
 }
 
 /* Theme Toggle */
@@ -224,22 +332,40 @@ a:hover {
     cursor: pointer;
     padding: 0.25rem;
     transition: transform var(--transition);
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: visible;
 }
 
 .theme-toggle:hover {
     transform: rotate(180deg);
+    background-color: var(--glass-hover);
+}
+
+.theme-icon-dark,
+.theme-icon-light {
+    position: absolute;
+    transition: opacity var(--transition), transform var(--transition);
 }
 
 .theme-icon-light {
-    display: none;
+    opacity: 0;
+    transform: rotate(180deg) scale(0.8);
 }
 
 .light-theme .theme-icon-dark {
-    display: none;
+    opacity: 0;
+    transform: rotate(180deg) scale(0.8);
 }
 
 .light-theme .theme-icon-light {
-    display: inline;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
 }
 
 /* Hero Section */
@@ -259,6 +385,9 @@ a:hover {
             rgba(212, 175, 55, 0.03) 20px
         );
     transition: background-color var(--transition);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
 }
 
 .light-theme .hero-section {
@@ -288,22 +417,43 @@ a:hover {
     width: 300px;
     height: 300px;
     opacity: 0.15;
+    transition: opacity 0.5s ease;
+}
+
+.hero-piece:hover {
+    opacity: 0.25;
 }
 
 .hero-knight {
     top: 10%;
     right: 5%;
+    animation: float 6s ease-in-out infinite;
 }
 
 .hero-queen {
     bottom: 10%;
     left: 5%;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
 }
 
 .hero-piece img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
 .campaign-content {
@@ -312,11 +462,28 @@ a:hover {
     padding: 2rem;
     height: 100%;
     border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+    box-shadow: var(--shadow-dark);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .campaign-content h3 {
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, var(--white), var(--light-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .campaign-meta {
@@ -325,16 +492,45 @@ a:hover {
     margin-bottom: 1.5rem;
     color: var(--text-secondary);
     font-size: 0.875rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.campaign-meta::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--gold);
 }
 
 .campaign-section {
     margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
 
 .campaign-section h4 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
     color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.campaign-section h4::before {
+    content: '♟';
+    font-size: 0.8rem;
 }
 
 .campaign-results {
@@ -342,10 +538,31 @@ a:hover {
     flex-wrap: wrap;
     gap: 1.5rem;
     margin: 1.5rem 0;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-delay: 0.7s;
 }
 
 .result-item {
     text-align: center;
+    position: relative;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background-color: var(--glass);
+    border: 1px solid var(--border-color);
+    flex: 1;
+    min-width: 100px;
+}
+
+.result-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    border-radius: 0.25rem 0.25rem 0 0;
 }
 
 .result-number {
@@ -353,6 +570,8 @@ a:hover {
     font-weight: 700;
     color: var(--gold);
     line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 .result-label {
@@ -364,27 +583,68 @@ a:hover {
 .carousel {
     border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-dark);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
 }
 
 .carousel-item img {
     width: 100%;
     height: 500px;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item.active img {
+    animation: zoomIn 0.5s ease forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.carousel:hover .carousel-control-prev,
+.carousel:hover .carousel-control-next {
+    opacity: 0.7;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 20px;
+    width: 20px;
+    height: 20px;
+    background-size: 50% 50%;
 }
 
 .carousel-indicators [data-bs-target] {
     background-color: var(--gold);
     opacity: 0.5;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: all var(--transition);
 }
 
 .carousel-indicators .active {
     opacity: 1;
+    width: 30px;
+    border-radius: 5px;
 }
 
 /* Portfolio Section */
@@ -392,11 +652,26 @@ a:hover {
     padding: 4rem 0;
     background-color: var(--bg-secondary);
     transition: background-color var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold), transparent, var(--gold));
 }
 
 .section-title {
     text-align: center;
     margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
 }
 
 .section-subtitle {
@@ -406,6 +681,10 @@ a:hover {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
 }
 
 /* Portfolio Filters */
@@ -415,6 +694,10 @@ a:hover {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
 }
 
 .filter-btn {
@@ -430,17 +713,43 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    transform: scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+.filter-btn:hover::before,
+.filter-btn.active::before {
+    transform: scale(1.5);
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-    background-color: var(--gold);
     color: var(--base);
     border-color: var(--gold);
 }
 
 .filter-icon {
     font-size: 1.25rem;
+    transition: transform var(--transition);
+}
+
+.filter-btn:hover .filter-icon,
+.filter-btn.active .filter-icon {
+    transform: scale(1.2);
 }
 
 /* Portfolio Grid */
@@ -454,21 +763,31 @@ a:hover {
     position: relative;
     border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform var(--transition), box-shadow var(--transition);
+    box-shadow: var(--shadow-dark);
+    transition: all var(--transition);
     cursor: pointer;
     height: 350px;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+    perspective: 1000px;
 }
 
 .portfolio-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .portfolio-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-card-image {
+    transform: scale(1.05);
 }
 
 .portfolio-card-overlay {
@@ -480,7 +799,7 @@ a:hover {
     color: var(--white);
     padding: 1.5rem;
     transform: translateY(100%);
-    transition: transform var(--transition);
+    transition: transform 0.5s ease;
 }
 
 .portfolio-card:hover .portfolio-card-overlay {
@@ -499,6 +818,14 @@ a:hover {
     font-size: 0.875rem;
     color: var(--gold);
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.portfolio-card-category::before {
+    content: '•';
+    font-size: 1rem;
 }
 
 .portfolio-card-blurb {
@@ -511,24 +838,50 @@ a:hover {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--gold);
+    transition: all var(--transition);
+}
+
+.portfolio-card-link:hover {
+    transform: translateX(5px);
 }
 
 /* About Section */
 .about-section {
     padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold), transparent, var(--gold));
 }
 
 .about-image {
     position: relative;
     border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-dark);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
 }
 
 .about-image img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
 }
 
 .chessboard-pattern {
@@ -546,6 +899,7 @@ a:hover {
     );
     opacity: 0.1;
     z-index: 1;
+    mix-blend-mode: overlay;
 }
 
 .about-skills {
@@ -560,17 +914,46 @@ a:hover {
     background-color: var(--glass);
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
-    transition: transform var(--transition);
+    transition: all var(--transition);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+.skill-item:hover::before {
+    transform: scaleY(1);
 }
 
 .skill-item:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-dark);
 }
 
 .skill-icon {
     font-size: 2rem;
     margin-bottom: 1rem;
     display: block;
+    transition: transform var(--transition);
+}
+
+.skill-item:hover .skill-icon {
+    transform: scale(1.2) rotate(10deg);
 }
 
 /* Contact Section */
@@ -578,6 +961,18 @@ a:hover {
     padding: 4rem 0;
     background-color: var(--bg-secondary);
     transition: background-color var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold), transparent, var(--gold));
 }
 
 .form-control {
@@ -587,7 +982,7 @@ a:hover {
     border-radius: 0.25rem;
     padding: 0.75rem 1rem;
     font-family: var(--font-body);
-    transition: border-color var(--transition), background-color var(--transition);
+    transition: all var(--transition);
 }
 
 .form-control:focus {
@@ -595,12 +990,22 @@ a:hover {
     border-color: var(--gold);
     color: var(--text-primary);
     box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+    transform: translateY(-2px);
 }
 
 .form-label {
     color: var(--text-primary);
     font-weight: 500;
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-label::after {
+    content: '♟';
+    font-size: 0.8rem;
+    color: var(--gold);
 }
 
 .contact-info {
@@ -609,6 +1014,10 @@ a:hover {
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
     height: 100%;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
 }
 
 .contact-list {
@@ -623,10 +1032,19 @@ a:hover {
     gap: 1rem;
     margin-bottom: 1rem;
     color: var(--text-secondary);
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    transition: all var(--transition);
+}
+
+.contact-list li:hover {
+    background-color: var(--glass-hover);
+    transform: translateX(5px);
 }
 
 .contact-icon {
     font-size: 1.25rem;
+    color: var(--gold);
 }
 
 .social-links {
@@ -636,6 +1054,18 @@ a:hover {
 .social-links h3 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.social-links h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--gold);
 }
 
 .social-link {
@@ -649,16 +1079,44 @@ a:hover {
     border: 1px solid var(--border-color);
     margin-right: 0.75rem;
     transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--gold);
+    transform: scale(0);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    z-index: 0;
+}
+
+.social-link:hover::before {
+    transform: scale(1);
 }
 
 .social-link:hover {
-    background-color: var(--gold);
-    color: var(--base);
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-link:hover .social-icon {
+    color: var(--base);
+    position: relative;
+    z-index: 1;
 }
 
 .social-icon {
     font-weight: 700;
+    transition: color var(--transition);
+    position: relative;
+    z-index: 1;
 }
 
 /* Footer */
@@ -667,6 +1125,7 @@ a:hover {
     background-color: var(--bg-primary);
     border-top: 1px solid var(--border-color);
     transition: background-color var(--transition);
+    position: relative;
 }
 
 .footer-content {
@@ -701,23 +1160,43 @@ a:hover {
     border-radius: 50%;
     background-color: #25D366;
     border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.whatsapp-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+.whatsapp-button:hover::before {
+    transform: scale(1.5);
 }
 
 .whatsapp-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-.whatsapp-button img {
-    width: 30px;
-    height: 30px;
-    filter: brightness(0) invert(1);
+.whatsapp-button i {
+    font-size: 24px;
+    color: white;
+    position: relative;
+    z-index: 1;
 }
 
 .whatsapp-chat {
@@ -731,6 +1210,18 @@ a:hover {
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     max-width: 80%;
+    animation: messageIn 0.3s ease forwards;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .bot-message {
@@ -765,16 +1256,40 @@ a:hover {
     align-items: center;
     gap: 0.75rem;
     text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.chat-option:hover::before {
+    transform: scaleY(1);
 }
 
 .chat-option:hover {
-    background-color: var(--gold);
-    color: var(--base);
+    background-color: var(--glass-hover);
     border-color: var(--gold);
+    transform: translateX(5px);
 }
 
 .option-icon {
     font-size: 1.25rem;
+    transition: transform var(--transition);
+}
+
+.chat-option:hover .option-icon {
+    transform: scale(1.2) rotate(10deg);
 }
 
 .chat-response {
@@ -782,96 +1297,88 @@ a:hover {
     padding-top: 1rem;
 }
 
+.chat-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
 /* Case Study Modal */
 .modal-content {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-dark);
 }
 
 .modal-header {
     border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem;
+}
+
+.modal-title {
+    color: var(--gold);
 }
 
 .modal-footer {
     border-top: 1px solid var(--border-color);
+    padding: 1.5rem;
 }
 
 .btn-close {
     filter: invert(1);
+    transition: transform var(--transition);
+}
+
+.btn-close:hover {
+    transform: rotate(90deg);
 }
 
 .light-theme .btn-close {
     filter: invert(0);
 }
 
-/* Case Study Page */
-.case-study-header {
-    padding: 8rem 0 2rem;
-}
-
-.case-study-breadcrumb {
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-}
-
-.case-study-breadcrumb a {
-    color: var(--text-secondary);
-}
-
-.case-study-breadcrumb a:hover {
-    color: var(--gold);
-}
-
-.case-study-title {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+.case-study-modal-content {
+    padding: 1rem 0;
 }
 
 .case-study-meta {
-    color: var(--text-secondary);
-}
-
-.case-study-hero {
-    padding: 2rem 0;
-}
-
-.case-study-content {
-    padding: 4rem 0;
-}
-
-.case-study-section {
-    margin-bottom: 4rem;
-}
-
-.case-study-section-title {
-    font-size: 2rem;
+    display: flex;
+    gap: 1rem;
     margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
     position: relative;
-    padding-left: 1.5rem;
+    padding-bottom: 1rem;
 }
 
-.case-study-section-title::before {
+.case-study-meta::after {
     content: '';
     position: absolute;
+    bottom: 0;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 70%;
+    width: 40px;
+    height: 2px;
     background-color: var(--gold);
 }
 
-.case-study-section-content {
-    color: var(--text-secondary);
-    line-height: 1.8;
+.case-study-section {
+    margin-bottom: 1.5rem;
 }
 
-.case-study-cta {
+.case-study-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 3rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.case-study-section h4::before {
+    content: '♟';
+    font-size: 0.8rem;
 }
 
 /* Custom Cursor */
@@ -885,13 +1392,97 @@ a:hover {
     z-index: 9999;
     mix-blend-mode: difference;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, opacity 0.1s ease;
+    transition: transform 0.1s ease, opacity 0.1s ease, background-color 0.3s ease;
     opacity: 0;
+}
+
+.custom-cursor.active {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--light-gold);
 }
 
 @media (hover: hover) {
     .custom-cursor {
         opacity: 0.7;
+    }
+}
+
+/* Loading Animation */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.chess-loader {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: chessRotate 3s infinite linear;
+}
+
+@keyframes chessRotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+.chess-piece {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    color: var(--gold);
+    opacity: 0.8;
+}
+
+.chess-piece:nth-child(1) {
+    top: 0;
+    left: 0;
+    animation: floatPiece 2s infinite ease-in-out;
+}
+
+.chess-piece:nth-child(2) {
+    top: 0;
+    right: 0;
+    animation: floatPiece 2s infinite ease-in-out 0.5s;
+}
+
+.chess-piece:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    animation: floatPiece 2s infinite ease-in-out 1s;
+}
+
+.chess-piece:nth-child(4) {
+    bottom: 0;
+    right: 0;
+    animation: floatPiece 2s infinite ease-in-out 1.5s;
+}
+
+@keyframes floatPiece {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
     }
 }
 
@@ -914,6 +1505,14 @@ a:hover {
 
 /* Responsive Styles */
 @media (max-width: 992px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
     .hero-piece {
         width: 200px;
         height: 200px;
@@ -926,11 +1525,11 @@ a:hover {
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     h2 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
     
     .hero-section {
@@ -945,12 +1544,12 @@ a:hover {
         height: 300px;
     }
     
-    .case-study-title {
-        font-size: 2rem;
-    }
-    
     .portfolio-card {
         height: 300px;
+    }
+    
+    .about-skills {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -970,6 +1569,14 @@ a:hover {
     .case-study-cta .btn {
         width: 100%;
     }
+    
+    .campaign-results {
+        flex-direction: column;
+    }
+    
+    .result-item {
+        min-width: 100%;
+    }
 }
 
 /* Reduced Motion */
@@ -988,4 +1595,29 @@ a:hover {
     .custom-cursor {
         display: none;
     }
+    
+    .loading-overlay {
+        display: none;
+    }
+}
+/* Add this to the end of your CSS file */
+
+/* Ensure loading overlay is on top */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
 }

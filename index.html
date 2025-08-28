@@ -11,18 +11,14 @@
     <meta property="og:url" content="https://adityapathak.dev/">
     <meta property="og:title" content="Aditya Pathak — Chess-Inspired Portfolio">
     <meta property="og:description" content="Creative Designer, Motion Editor & AI Enthusiast building strategy-driven campaigns with design + automation.">
-    <meta property="og:image" content="assets/images/hero-knight.png">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/0B0B0C/FFFFFF?text=Aditya+Pathak+Portfolio">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://adityapathak.dev/">
     <meta property="twitter:title" content="Aditya Pathak — Chess-Inspired Portfolio">
     <meta property="twitter:description" content="Creative Designer, Motion Editor & AI Enthusiast building strategy-driven campaigns with design + automation.">
-    <meta property="twitter:image" content="assets/images/hero-knight.png">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" as="style">
-    <link rel="preload" href="assets/images/hero-knight.png" as="image">
+    <meta property="twitter:image" content="https://via.placeholder.com/1200x630/0B0B0C/FFFFFF?text=Aditya+Pathak+Portfolio">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -30,19 +26,25 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <!-- Loading Animation -->
+    <div class="loading-overlay">
+        <div class="chess-loader">
+            <div class="chess-piece">♜</div>
+            <div class="chess-piece">♞</div>
+            <div class="chess-piece">♝</div>
+            <div class="chess-piece">♛</div>
+        </div>
+    </div>
     
     <!-- Custom Knight Cursor (for desktop only) -->
     <div class="custom-cursor"></div>
@@ -51,7 +53,7 @@
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="#home">
                     <span class="brand-icon">♔</span> Aditya Pathak
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,10 +92,10 @@
             <div class="container">
                 <div class="hero-parallax">
                     <div class="hero-piece hero-knight" data-speed="0.5">
-                        <img src="assets/images/hero-knight.png" alt="Chess Knight" loading="eager">
+                        <img src="https://via.placeholder.com/300x300/0B0B0C/FFFFFF?text=♘" alt="Chess Knight" loading="eager">
                     </div>
                     <div class="hero-piece hero-queen" data-speed="0.2">
-                        <img src="assets/images/hero-queen.png" alt="Chess Queen" loading="eager">
+                        <img src="https://via.placeholder.com/300x300/0B0B0C/FFFFFF?text=♕" alt="Chess Queen" loading="eager">
                     </div>
                 </div>
                 
@@ -190,7 +192,7 @@
                     <div class="col-lg-6">
                         <div class="about-image">
                             <div class="chessboard-pattern"></div>
-                            <img src="assets/images/about-image.jpg" alt="Aditya Pathak" loading="lazy">
+                            <img src="https://via.placeholder.com/600x600/0B0B0C/FFFFFF?text=Aditya+Pathak" alt="Aditya Pathak" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -226,15 +228,15 @@
                             <h3>Contact Information</h3>
                             <ul class="contact-list">
                                 <li>
-                                    <span class="contact-icon">✉️</span>
+                                    <span class="contact-icon"><i class="fas fa-envelope"></i></span>
                                     <span>hello@adityapathak.dev</span>
                                 </li>
                                 <li>
-                                    <span class="contact-icon">📱</span>
+                                    <span class="contact-icon"><i class="fas fa-phone"></i></span>
                                     <span>+1 (555) 123-4567</span>
                                 </li>
                                 <li>
-                                    <span class="contact-icon">📍</span>
+                                    <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
                                     <span>New York, NY</span>
                                 </li>
                             </ul>
@@ -245,13 +247,13 @@
                                     <span class="social-icon">in</span>
                                 </a>
                                 <a href="#" class="social-link" aria-label="Twitter">
-                                    <span class="social-icon">𝕏</span>
+                                    <span class="social-icon"><i class="fab fa-twitter"></i></span>
                                 </a>
                                 <a href="#" class="social-link" aria-label="Instagram">
-                                    <span class="social-icon">📷</span>
+                                    <span class="social-icon"><i class="fab fa-instagram"></i></span>
                                 </a>
                                 <a href="#" class="social-link" aria-label="Dribbble">
-                                    <span class="social-icon">🏀</span>
+                                    <span class="social-icon"><i class="fab fa-dribbble"></i></span>
                                 </a>
                             </div>
                         </div>
@@ -274,7 +276,7 @@
     <!-- WhatsApp Chatbot -->
     <div class="whatsapp-container">
         <button class="whatsapp-button" id="whatsapp-toggle" aria-label="Open WhatsApp chat">
-            <img src="assets/icons/whatsapp.svg" alt="WhatsApp" loading="lazy">
+            <i class="fab fa-whatsapp"></i>
         </button>
         
         <div class="offcanvas offcanvas-end" tabindex="-1" id="whatsapp-offcanvas" aria-labelledby="whatsapp-offcanvas-label">
@@ -351,37 +353,21 @@
     
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" id="json-ld-data">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Aditya Pathak",
-        "url": "https://adityapathak.dev",
-        "sameAs": [
-            "https://linkedin.com/in/adityapathak",
-            "https://twitter.com/adityapathak",
-            "https://instagram.com/adityapathak",
-            "https://dribbble.com/adityapathak"
-        ],
-        "jobTitle": "Creative Designer",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Aditya Pathak Creative"
-        },
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "University Name"
-        },
-        "knowsAbout": [
-            "Creative Direction",
-            "Motion Design",
-            "Brand Strategy",
-            "UI/UX Design",
-            "Digital Marketing"
-        ]
-    }
-    </script>
+
+    <!-- Add this right before the closing </body> tag -->
+<script>
+    // Fallback to hide loading animation if it gets stuck
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.classList.add('hidden');
+                setTimeout(() => {
+                    loadingOverlay.remove();
+                }, 500);
+            }
+        }, 2000);
+    });
+</script>
 </body>
 </html>
