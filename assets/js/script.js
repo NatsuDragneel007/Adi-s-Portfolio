@@ -25,7 +25,7 @@ const campaignsData = [
         client: "Local Studio",
         year: 2023,
         category: "Print",
-        images: ["https://via.placeholder.com/800x600/0B0B0C/FFFFFF?text=Print+Campaign"],
+        images: ["/Users/editing/Documents/Portfolio/April 25/Data/Done/offer nahi 2.png"],
         problem: "Client needed premium brand collateral for investor meetings.",
         strategy: "Minimal layout, tactile paper choices, bold typography.",
         execution: "Designed prints, organized printing specs, supervised proofing.",
