@@ -1,0 +1,72 @@
+[
+  {
+    "id": "campaign-chess-360-1",
+    "slug": "play-to-win-360",
+    "title": "Play to Win — 360° Product Campaign",
+    "client": "Brand Co.",
+    "year": 2024,
+    "category": "360 Campaign",
+    "images": ["portfolio-360-1.jpg","portfolio-360-1-b.jpg"],
+    "problem": "Low engagement & no unified creative direction across channels.",
+    "strategy": "Introduce a motion-led hero film + simplified brand kit for scalable social cutdowns.",
+    "execution": "Led creative direction; produced hero film; created templated social edits. Tools: After Effects, Figma, Premiere, Midjourney.",
+    "results": {
+      "engagement_increase_percent": 42,
+      "ctr_increase_percent": 37,
+      "notes": "Campaign increased month-over-month engagement by 42% and reduced CPA by 18%."
+    },
+    "cta_text": "View full case study"
+  },
+  {
+    "id": "campaign-print-1",
+    "slug": "paper-strategy",
+    "title": "Paper Strategy — Print & Environmental Brochure",
+    "client": "Local Studio",
+    "year": 2023,
+    "category": "Print",
+    "images": ["portfolio-print-1.jpg"],
+    "problem": "Client needed premium brand collateral for investor meetings.",
+    "strategy": "Minimal layout, tactile paper choices, bold typography.",
+    "execution": "Designed prints, organized printing specs, supervised proofing.",
+    "results": {
+      "meeting_success_rate_percent": 90,
+      "notes": "Helped secure two new partnerships."
+    },
+    "cta_text": "Download print spec PDF"
+  },
+  {
+    "id": "campaign-logo-1",
+    "slug": "regal-identity",
+    "title": "Regal Identity — Logo & Brand System",
+    "client": "Tech Startup",
+    "year": 2023,
+    "category": "Logos & Brand Identity",
+    "images": ["portfolio-logo-1.jpg"],
+    "problem": "Startup needed a distinctive brand identity to stand out in a crowded market.",
+    "strategy": "Create a modern, versatile logo system that communicates innovation and trust.",
+    "execution": "Developed multiple logo concepts, refined based on client feedback, created comprehensive brand guidelines.",
+    "results": {
+      "brand_recognition_percent": 65,
+      "notes": "Brand recognition increased by 65% within the first quarter of launch."
+    },
+    "cta_text": "View brand guidelines"
+  },
+  {
+    "id": "campaign-social-1",
+    "slug": "social-checkmate",
+    "title": "Social Checkmate — Social Media Campaign",
+    "client": "E-commerce Brand",
+    "year": 2024,
+    "category": "Social Media Designs",
+    "images": ["portfolio-social-1.jpg"],
+    "problem": "Low engagement on social media platforms and inconsistent brand presence.",
+    "strategy": "Develop a chess-themed campaign with interactive content to boost engagement.",
+    "execution": "Created a series of chess-themed posts, stories, and interactive content for Instagram, Facebook, and Twitter.",
+    "results": {
+      "engagement_increase_percent": 78,
+      "follower_growth_percent": 45,
+      "notes": "Achieved 78% increase in engagement and 45% growth in followers over three months."
+    },
+    "cta_text": "View campaign report"
+  }
+]

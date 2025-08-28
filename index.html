@@ -1,331 +1,387 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya Pathak — Chess-Inspired Portfolio</title>
     <meta name="description" content="Creative Designer, Motion Editor & AI Enthusiast building strategy-driven campaigns with design + automation.">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adityapathak.dev/">
+    <meta property="og:title" content="Aditya Pathak — Chess-Inspired Portfolio">
+    <meta property="og:description" content="Creative Designer, Motion Editor & AI Enthusiast building strategy-driven campaigns with design + automation.">
+    <meta property="og:image" content="assets/images/hero-knight.png">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/icons/knight.svg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://adityapathak.dev/">
+    <meta property="twitter:title" content="Aditya Pathak — Chess-Inspired Portfolio">
+    <meta property="twitter:description" content="Creative Designer, Motion Editor & AI Enthusiast building strategy-driven campaigns with design + automation.">
+    <meta property="twitter:image" content="assets/images/hero-knight.png">
     
-    <!-- Stylesheet -->
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" as="style">
+    <link rel="preload" href="assets/images/hero-knight.png" as="image">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     
-    <!-- Scripts -->
-    <script src="assets/js/script.js"></script>
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
 </head>
 <body>
-    <div class="chess-bg"></div>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
     
-    <!-- Header/Navigation -->
-    <header>
-        <nav class="container">
-            <div class="logo">Aditya Pathak</div>
-            <div class="nav-links">
-                <a href="#home" class="active">Home</a>
-                <a href="#about">About</a>
-                <a href="#campaigns">Campaigns</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#ai">AI</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
+    <!-- Custom Knight Cursor (for desktop only) -->
+    <div class="custom-cursor"></div>
+    
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <span class="brand-icon">♔</span> Aditya Pathak
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#portfolio">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                                <span class="theme-icon-dark">♘</span>
+                                <span class="theme-icon-light">♕</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
-    
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <h1 class="hero-headline">Aditya Pathak</h1>
-            <p class="hero-subhead">Creative Designer · Motion Editor · Marketing-Minded Leader · AI Enthusiast</p>
-            
-            <div class="badges">
-                <span class="badge">Initiator</span>
-                <span class="badge">Creative</span>
-                <span class="badge">Observer</span>
-            </div>
-            
-            <div class="cta-buttons">
-                <a href="#contact" class="btn">Hire Me</a>
-                <a href="#portfolio" class="btn">See Work</a>
-                <a href="#" class="btn">Download Resume</a>
-            </div>
-        </div>
-        
-        <div class="hero-images">
-            <img src="assets/images/hero-knight.png" alt="Chess Knight" class="hero-piece knight">
-            <img src="assets/images/hero-queen.png" alt="Chess Queen" class="hero-piece queen">
-        </div>
-        
-        <div class="social-icons">
-            <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-behance"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-        </div>
-    </section>
-    
-    <!-- 360 Campaigns Section -->
-    <section id="campaigns" class="campaigns">
-        <div class="container">
-            <h2 class="section-title">360° Campaigns</h2>
-            
-            <div class="campaign-slider">
-                <div class="slider-track">
-                    <div class="campaign-slide">
-                        <img src="assets/images/portfolio-360-1.jpg" alt="Campaign 1" class="slide-image">
-                        <div class="slide-infographic">
-                            <div class="infographic-item">
-                                <div class="infographic-icon">🎯</div>
-                                <div class="infographic-label">Problem</div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section with 360° Campaigns -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-parallax">
+                    <div class="hero-piece hero-knight" data-speed="0.5">
+                        <img src="assets/images/hero-knight.png" alt="Chess Knight" loading="eager">
+                    </div>
+                    <div class="hero-piece hero-queen" data-speed="0.2">
+                        <img src="assets/images/hero-queen.png" alt="Chess Queen" loading="eager">
+                    </div>
+                </div>
+                
+                <div class="row align-items-center">
+                    <!-- 70% Image Area -->
+                    <div class="col-lg-8">
+                        <div id="campaignCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <!-- Indicators will be dynamically generated -->
                             </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">🧠</div>
-                                <div class="infographic-label">Strategy</div>
+                            <div class="carousel-inner">
+                                <!-- Carousel items will be dynamically generated -->
                             </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">⚙️</div>
-                                <div class="infographic-label">Execution</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">✨</div>
-                                <div class="infographic-label">Result</div>
-                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#campaignCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#campaignCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="campaign-slide">
-                        <img src="assets/images/portfolio-360-1.jpg" alt="Campaign 2" class="slide-image">
-                        <div class="slide-infographic">
-                            <div class="infographic-item">
-                                <div class="infographic-icon">🎯</div>
-                                <div class="infographic-label">Problem</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">🧠</div>
-                                <div class="infographic-label">Strategy</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">⚙️</div>
-                                <div class="infographic-label">Execution</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">✨</div>
-                                <div class="infographic-label">Result</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="campaign-slide">
-                        <img src="assets/images/portfolio-360-1.jpg" alt="Campaign 3" class="slide-image">
-                        <div class="slide-infographic">
-                            <div class="infographic-item">
-                                <div class="infographic-icon">🎯</div>
-                                <div class="infographic-label">Problem</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">🧠</div>
-                                <div class="infographic-label">Strategy</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">⚙️</div>
-                                <div class="infographic-label">Execution</div>
-                            </div>
-                            <div class="infographic-item">
-                                <div class="infographic-icon">✨</div>
-                                <div class="infographic-label">Result</div>
-                            </div>
+                    
+                    <!-- 30% Content Area -->
+                    <div class="col-lg-4">
+                        <div id="campaign-content" class="campaign-content">
+                            <!-- Campaign content will be dynamically generated -->
                         </div>
                     </div>
                 </div>
-                <button class="slider-nav prev">‹</button>
-                <button class="slider-nav next">›</button>
             </div>
-        </div>
-    </section>
-    
-    <!-- AI Section -->
-    <section id="ai" class="ai-section">
-        <div class="container">
-            <h2 class="section-title">AI as My Co-Player</h2>
-            
-            <div class="ai-grid">
-                <div class="ai-card">
-                    <div class="ai-icon">📝</div>
-                    <h3>Drafting Campaigns</h3>
-                    <p>Leveraging AI to generate creative concepts, headlines, and campaign structures while maintaining human oversight and refinement.</p>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">Portfolio</h2>
+                <p class="section-subtitle">Strategic campaigns executed with precision</p>
+                
+                <!-- Portfolio Filters -->
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="filter-icon">♔</span> All
+                    </button>
+                    <button class="filter-btn" data-filter="360 Campaign">
+                        <span class="filter-icon">♖</span> 360° Campaigns
+                    </button>
+                    <button class="filter-btn" data-filter="Logos & Brand Identity">
+                        <span class="filter-icon">♘</span> Brand Identity
+                    </button>
+                    <button class="filter-btn" data-filter="Print">
+                        <span class="filter-icon">♗</span> Print
+                    </button>
+                    <button class="filter-btn" data-filter="Social Media Designs">
+                        <span class="filter-icon">♙</span> Social Media
+                    </button>
                 </div>
                 
-                <div class="ai-card">
-                    <div class="ai-icon">🖼️</div>
-                    <h3>Image & Video Generation</h3>
-                    <p>Utilizing advanced generative models to create custom visuals and motion graphics for diverse marketing applications.</p>
-                </div>
-                
-                <div class="ai-card">
-                    <div class="ai-icon">🎤</div>
-                    <h3>Voiceovers & Motion</h3>
-                    <p>Integrating AI-powered voice synthesis and motion algorithms to enhance video content with professional audio narration.</p>
-                </div>
-                
-                <div class="ai-card">
-                    <div class="ai-icon">⚡</div>
-                    <h3>Automation</h3>
-                    <p>Implementing workflow automations using AI to streamline repetitive tasks and optimize creative production processes.</p>
+                <!-- Portfolio Grid -->
+                <div class="row portfolio-grid">
+                    <!-- Portfolio items will be dynamically generated -->
                 </div>
             </div>
-            
-            <div class="timeline">
-                <h2 class="section-title">AI Journey</h2>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-stage">Opening → Midgame → Endgame</div>
-                        <p>Initial exploration of AI tools and understanding their potential applications in creative workflows.</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="section-title">About Me</h2>
+                        <p class="lead">I'm a strategic creative who approaches design like a chess game—thinking several moves ahead to create winning solutions.</p>
+                        <p>With a background in both design and technology, I craft campaigns that not only look beautiful but deliver measurable results. Every project is a new challenge, an opportunity to outmaneuver competitors and create memorable experiences.</p>
+                        <p>My approach combines strategic thinking with creative execution, ensuring that every design decision serves a purpose and contributes to the overall objective.</p>
+                        <div class="about-skills">
+                            <div class="skill-item">
+                                <span class="skill-icon">♜</span>
+                                <h3>Creative Direction</h3>
+                                <p>Leading teams to create cohesive, impactful campaigns across all channels.</p>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-icon">♞</span>
+                                <h3>Motion Design</h3>
+                                <p>Bringing ideas to life through animation and video that captivates audiences.</p>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-icon">♝</span>
+                                <h3>Strategic Thinking</h3>
+                                <p>Developing data-informed strategies that drive business growth and engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-image">
+                            <div class="chessboard-pattern"></div>
+                            <img src="assets/images/about-image.jpg" alt="Aditya Pathak" loading="lazy">
+                        </div>
                     </div>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-stage">Opening → Midgame → Endgame</div>
-                        <p>Integration of AI into daily work processes, testing different platforms and refining usage patterns.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 class="section-title">Get In Touch</h2>
+                        <p class="lead">Ready to make your next move? Let's discuss how we can work together to create something extraordinary.</p>
+                        
+                        <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-info">
+                            <h3>Contact Information</h3>
+                            <ul class="contact-list">
+                                <li>
+                                    <span class="contact-icon">✉️</span>
+                                    <span>hello@adityapathak.dev</span>
+                                </li>
+                                <li>
+                                    <span class="contact-icon">📱</span>
+                                    <span>+1 (555) 123-4567</span>
+                                </li>
+                                <li>
+                                    <span class="contact-icon">📍</span>
+                                    <span>New York, NY</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="social-links">
+                                <h3>Connect With Me</h3>
+                                <a href="#" class="social-link" aria-label="LinkedIn">
+                                    <span class="social-icon">in</span>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Twitter">
+                                    <span class="social-icon">𝕏</span>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <span class="social-icon">📷</span>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Dribbble">
+                                    <span class="social-icon">🏀</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-stage">Opening → Midgame → Endgame</div>
-                        <p>Strategic implementation ofAI across entire projects, achieving measurable efficiency gains and creative breakthroughs.</p>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Leadership & Mentorship Section -->
-    <section class="leadership">
-        <div class="container">
-            <h2 class="section-title">Leadership & Mentorship</h2>
-            
-            <div class="king-metaphor">
-                <div class="king-icon">♔</div>
-                <h3>King Presence</h3>
-                <p>As a leader, I embody presence, responsibility, and vision—guiding teams toward shared goals with clarity and purpose.</p>
-                
-                <ul class="leadership-bullets">
-                    <li>Mentoring junior designers through structured workshops and hands-on learning experiences</li>
-                    <li>Running collaborative brainstorming sessions that foster innovation and team bonding</li>
-                    <li>Conducting regular brand reviews to ensure consistency and strategic alignment</li>
-                    <li>Building client trust through transparent communication and reliable delivery</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Who I Am -->
-    <section id="traits" class="traits">
-        <div class="container">
-            <h2 class="section-title">Who I Am</h2>
-            
-            <div class="trait-grid">
-                <div class="trait-item">
-                    <div class="trait-icon">💎</div>
-                    <h3>Trustworthy</h3>
-                    <p>Building long-term relationships based on reliability and ethical practices.</p>
-                </div>
-                
-                <div class="trait-item">
-                    <div class="trait-icon">⏱️</div>
-                    <h3>Consistent</h3>
-                    <p>Maintaining high standards of quality and delivering on promises consistently.</p>
-                </div>
-                
-                <div class="trait-item">
-                    <div class="trait-icon">🔄</div>
-                    <h3>Persistent</h3>
-                    <p>Never giving up on challenging problems and continuously seeking improvement.</p>
-                </div>
-            </div>
-            
-            <div class="hobbies">
-                <h2 class="section-title">Hobbies</h2>
-                
-                <div class="hobby-icons">
-                    <div class="hobby-icon">♟️</div>
-                    <div class="hobby-icon">🎮</div>
-                    <div class="hobby-icon">🎵</div>
-                    <div class="hobby-icon">🤖</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            
-            <div class="contact-form">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Your Name">
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Your Email">
-                </div>
-                
-                <div class="form-group">
-                    <textarea class="form-textarea" rows="5" placeholder="Your Message"></textarea>
-                </div>
-                
-                <div class="contact-buttons">
-                    <button class="btn">Email Me</button>
-                    <button class="btn">Schedule Call</button>
-                    <button class="btn">Download Resume</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+        </section>
+    </main>
+
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-chessboard"></div>
             <div class="footer-content">
+                <div class="footer-chess"></div>
                 <p>&copy; 2025 Aditya Pathak — Built with Strategy</p>
             </div>
         </div>
     </footer>
-    
+
     <!-- WhatsApp Chatbot -->
-    <div class="whatsapp-btn" id="whatsappBtn">
-        <i class="fab fa-whatsapp"></i>
-    </div>
-    
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h3>How can I help you?</h3>
-            <button class="chat-close" id="chatClose">&times;</button>
-        </div>
+    <div class="whatsapp-container">
+        <button class="whatsapp-button" id="whatsapp-toggle" aria-label="Open WhatsApp chat">
+            <img src="assets/icons/whatsapp.svg" alt="WhatsApp" loading="lazy">
+        </button>
         
-        <div class="chat-question">Hi! Are you interested in discussing a new project?
-            <div class="chat-answer">Yes, I'd love to talk about working together!</div>
-            <div class="chat-question">Great! What type of project are you considering?
-                <div class="chat-answer">I'm looking for help with a branding project for my tech startup.</div>
-                <div class="chat-question">That sounds exciting! Do you have a timeline in mind?
-                    <div class="chat-answer">We're hoping to launch within the next 2 months.</div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="whatsapp-offcanvas" aria-labelledby="whatsapp-offcanvas-label">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="whatsapp-offcanvas-label">How can I help you?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="whatsapp-chat">
+                    <div class="chat-message bot-message">
+                        <p>Hello! I'm Aditya's virtual assistant. How can I help you today?</p>
+                    </div>
+                    
+                    <div class="chat-options">
+                        <button class="chat-option" data-option="quote">
+                            <span class="option-icon">💼</span> Need a quick quote?
+                        </button>
+                        <button class="chat-option" data-option="brief">
+                            <span class="option-icon">📝</span> Discuss a brief?
+                        </button>
+                        <button class="chat-option" data-option="call">
+                            <span class="option-icon">📞</span> Book a call?
+                        </button>
+                    </div>
+                    
+                    <div class="chat-response" id="chat-response">
+                        <!-- Responses will be dynamically inserted here -->
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
+
+    <!-- Case Study Modal -->
+    <div class="modal fade" id="caseStudyModal" tabindex="-1" aria-labelledby="caseStudyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="caseStudyModalLabel">Case Study</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="caseStudyModalBody">
+                    <!-- Case study content will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#" class="btn btn-primary" id="caseStudyModalLink">View Full Case Study</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Easter Egg Modal -->
+    <div class="modal fade" id="easterEggModal" tabindex="-1" aria-labelledby="easterEggModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="easterEggModalLabel">Checkmate!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You've found the secret! Just like in chess, the most interesting discoveries often come from exploring unexpected paths.</p>
+                    <p>Fun fact: I've been playing chess since I was 7 years old, and I still believe the best strategies are built one move at a time.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Thanks for sharing!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Scripts -->
+    <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" id="json-ld-data">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aditya Pathak",
+        "url": "https://adityapathak.dev",
+        "sameAs": [
+            "https://linkedin.com/in/adityapathak",
+            "https://twitter.com/adityapathak",
+            "https://instagram.com/adityapathak",
+            "https://dribbble.com/adityapathak"
+        ],
+        "jobTitle": "Creative Designer",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Aditya Pathak Creative"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "University Name"
+        },
+        "knowsAbout": [
+            "Creative Direction",
+            "Motion Design",
+            "Brand Strategy",
+            "UI/UX Design",
+            "Digital Marketing"
+        ]
+    }
+    </script>
 </body>
 </html>
